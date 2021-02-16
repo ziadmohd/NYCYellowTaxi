@@ -1,0 +1,5 @@
+NYC cab data is available here: 
+https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+COVID data is available here: 
+https://github.com/nytimes/covid-19-data/blob/master/us-states.csv
+
