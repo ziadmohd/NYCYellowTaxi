@@ -18,9 +18,9 @@ from datetime import datetime,date,timedelta
 
 
 # feture to be predicted 
-feature = 'Cases'
-#fulldata = pd.read_csv('C:\\MyProjects\\Roche\Data\\YelloCabDataModel.csv', parse_dates=['date']).fillna(0)
+feature = 'SalesAmount'
 fulldata = pd.read_csv('C:\\MyProjects\\Roche\Data\\YelloCabDataModel.csv', parse_dates=['date']).fillna(0)
+#fulldata = pd.read_csv('C:\\MyProjects\\Roche\Data\\YelloCabDataModel.csv', parse_dates=['date']).fillna(0)
 
 df1=fulldata[(fulldata['date'] >= '2020-03-15') ]
 
@@ -81,8 +81,8 @@ model.add(LSTM(50))
 model.add(Dense(1))
 model.compile(loss='mean_squared_error',optimizer='rmsprop')
 #model.compile(loss='mean_squared_error',optimizer='rmsprop')
-model.fit(X_train,y_train,validation_data=(X_test,ytest),epochs=100,batch_size=5,verbose=1)
-
+model.fit(X_train,y_train,validation_data=(X_test,ytest),epochs=100,batch_size=10,verbose=1)
+print(model.summary())
 
 
 ### Lets Do the prediction and check performance metrics
@@ -97,9 +97,9 @@ test_predict=scaler.inverse_transform(test_predict)
 
 import math
 from sklearn.metrics import mean_squared_error
-print(math.sqrt(mean_squared_error(y_train,train_predict)))
+#print("Mean Sequared Error : ",math.sqrt(mean_squared_error(y_train,train_predict)))
 ### Test Data RMSE
-print(math.sqrt(mean_squared_error(ytest,test_predict)))
+print("Mean Sequared Error : ",math.sqrt(mean_squared_error(ytest,test_predict)))
 
 # Predicting the future time series result for the next number of days
 x_input=test_data[len(test_data) -time_steps:].reshape(1,-1)
